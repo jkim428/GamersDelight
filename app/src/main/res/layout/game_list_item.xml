@@ -12,36 +12,39 @@
         android:layout_height="75dp"
         android:layout_marginRight="12dp"
         android:layout_marginTop="4dp"
-        android:src="@mipmap/ic_launcher">
-    </ImageView>
+        android:onClick="viewGameDetails"
+        android:src="@mipmap/ic_launcher"></ImageView>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
-            android:text="TextView"
+            android:id="@+id/gameListNameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:id="@+id/gameListNameTextView" />
+            android:onClick="viewGameDetails"
+            android:text="TextView"
+            android:textSize="24sp" />
 
         <TextView
-            android:text="TextView"
+            android:id="@+id/gameListDescriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/gameListDescriptionTextView" />
+            android:onClick="viewGameDetails"
+            android:text="TextView" />
 
         <RatingBar
+            android:id="@+id/gameListRatingBar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/gameListRatingBar"
-            android:numStars="@integer/max_num_stars"
-            android:rating="0"
-            android:stepSize=".5"
             android:isIndicator="true"
-            style="@style/Widget.AppCompat.RatingBar.Small" />
+            android:numStars="@integer/max_num_stars"
+            android:onClick="viewGameDetails"
+            android:rating="0"
+            android:stepSize=".5" />
     </LinearLayout>
 
 

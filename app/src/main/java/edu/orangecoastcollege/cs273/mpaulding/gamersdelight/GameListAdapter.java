@@ -28,8 +28,6 @@ public class GameListAdapter extends ArrayAdapter<Game> {
     private List<Game> mGamesList = new ArrayList<>();
     private int mResourceId;
 
-
-
     /**
      * Creates a new <code>GameListAdapter</code> given a mContext, resource id and list of games.
      *
@@ -54,40 +52,37 @@ public class GameListAdapter extends ArrayAdapter<Game> {
     @Override
     public View getView(int pos, View convertView, ViewGroup parent)
     {
-        final Game selectedGame = mGamesList.get(pos);
-
         LayoutInflater inflater =
                 (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(mResourceId, null);
 
-        LinearLayout gameListLinearLayout =
-                (LinearLayout) view.findViewById(R.id.gameListLinearLayout);
-        ImageView gameListImageView =
-                (ImageView) view.findViewById(R.id.gameListImageView);
-        TextView gameListNameTextView =
-                (TextView) view.findViewById(R.id.gameListNameTextView);
-        TextView gameListDescriptionTextView =
-                (TextView) view.findViewById(R.id.gameListDescriptionTextView);
-        RatingBar gameListRatingBar =
-                (RatingBar) view.findViewById(R.id.gameListRatingBar);
+        //TODO:  Code for getting the view of a list item correctly inflated.
+        LinearLayout mLinearLayout = (LinearLayout) view.findViewById(R.id.gameListLinearLayout);
+        ImageView mGameImageView = (ImageView) view.findViewById(R.id.gameListImageView);
+        TextView mGameNameTextView = (TextView) view.findViewById(R.id.gameListNameTextView);
+        TextView mGameDescriptionTextView = (TextView) view.findViewById(R.id.gameListDescriptionTextView);
+        RatingBar mGameRatingBar = (RatingBar) view.findViewById(R.id.gameListRatingBar);
 
-        gameListLinearLayout.setTag(selectedGame);
-        gameListNameTextView.setText(selectedGame.getName());
-        gameListDescriptionTextView.setText(selectedGame.getDescription());
-        gameListRatingBar.setRating(selectedGame.getRating());
+        Game selectedGame = mGamesList.get(pos);
+
+        mGameNameTextView.setText(selectedGame.getName());
+        mGameDescriptionTextView.setText(selectedGame.getDescription());
+        mGameRatingBar.setRating(selectedGame.getRating());
 
         AssetManager am = mContext.getAssets();
         try {
             InputStream stream = am.open(selectedGame.getImageName());
-            Drawable event = Drawable.createFromStream(stream, selectedGame.getName());
-            gameListImageView.setImageDrawable(event);
-        }
-        catch (IOException ex)
-        {
-            Log.e("Gamers Delight", "Error loading " + selectedGame.getImageName(), ex);
+            Drawable image = Drawable.createFromStream(stream, selectedGame.getName());
+            mGameImageView.setImageDrawable(image);
+        } catch (IOException e) {
+            Log.e("Gamers Delight", "Error loading " + selectedGame.getImageName(), e);;
         }
 
-
+        mLinearLayout.setTag(selectedGame);
+        mGameImageView.setTag(selectedGame);
+        mGameNameTextView.setTag(selectedGame);
+        mGameDescriptionTextView.setTag(selectedGame);
+        mGameRatingBar.setTag(selectedGame);
 
         return view;
     }

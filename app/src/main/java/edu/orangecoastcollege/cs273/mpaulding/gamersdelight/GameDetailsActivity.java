@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 
+
 public class GameDetailsActivity extends AppCompatActivity {
 
     @Override
@@ -30,17 +31,17 @@ public class GameDetailsActivity extends AppCompatActivity {
         String name = detailsIntent.getStringExtra("Name");
         String description = detailsIntent.getStringExtra("Description");
         float rating = detailsIntent.getFloatExtra("Rating", 0.0f);
-        String imageName = detailsIntent.getStringExtra("ImageName");
+        String imageFileName = detailsIntent.getStringExtra("ImageFileName");
 
         AssetManager am = this.getAssets();
         try {
-            InputStream stream = am.open(imageName);
+            InputStream stream = am.open(imageFileName);
             Drawable event = Drawable.createFromStream(stream, name);
             gameDetailsImageView.setImageDrawable(event);
         }
         catch (IOException ex)
         {
-            Log.e("Gamers Delight", "Error loading " + imageName, ex);
+            Log.e("Gamers Delight", "Error loading " + imageFileName, ex);
         }
 
         gameDetailsNameTextView.setText(name);
